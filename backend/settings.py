@@ -15,7 +15,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from pathlib import Path
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,37 +124,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #   }
 #}
 
-# =========================
-# DATABASE CONFIGURATION
-# =========================
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",  # fallback para desarrollo
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'asorbol_produccion',
-#        'USER': 'asorbol_produccion_user',
-#        'PASSWORD': 'rjYAGxU0raFwAxQSdO2jpXIPVXeVlgMQ',
-#        'HOST': 'dpg-d5n3vrkmrvns73fh6oog-a.oregon-postgres.render.com',
-#        'PORT': '5432',
-#    }
-#}
-
-
-
-
-# Si hay DATABASE_URL (en producción), usar PostgreSQL
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
 
 
 # Password validation
