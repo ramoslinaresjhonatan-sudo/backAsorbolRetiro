@@ -78,10 +78,11 @@ ROOT_URLCONF = 'backend.urls'
 
 # CORS settings
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True  # Más seguro en producción
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # tu frontend local
     "https://asorbolsczt.vercel.app",  # producción
+    "https://inscripcion-asorbo.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_NAME = "csrftoken"        # nombre de la cookie
